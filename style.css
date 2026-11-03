@@ -1,0 +1,292 @@
+:root {
+  color-scheme: light dark;
+
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --text: #1d1d1b;
+  --muted: #66645e;
+  --border: #dddbd3;
+  --outline: #8a8880;
+  --accent: #1f7a55;
+  --on-accent: #ffffff;
+  --danger: #b3321f;
+  --hover: #efeee8;
+  --warning-bg: #fdf0d5;
+  --warning-text: #5c3f00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141513;
+    --surface: #1e1f1c;
+    --text: #ecebe6;
+    --muted: #a5a39c;
+    --border: #33342f;
+    --outline: #7a7870;
+    --accent: #5fcf9f;
+    --on-accent: #0d1f17;
+    --danger: #ff8a75;
+    --hover: #2a2b27;
+    --warning-bg: #3a2e12;
+    --warning-text: #f5dc9f;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.app {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* Header */
+.app-header {
+  margin-bottom: 1.25rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.today {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.storage-message {
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  overflow-wrap: anywhere;
+}
+
+/* Add form. Inputs stay at 16px or larger so iOS doesn't zoom on focus. */
+.add-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.add-form input {
+  flex: 1;
+}
+
+.add-button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-error {
+  min-height: 1.4em;
+  margin: 0.25rem 0 0.5rem;
+  color: var(--danger);
+  font-size: 0.875rem;
+}
+
+/* Habit list */
+.habit-list {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.habit {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "tick info actions"
+    "dots dots dots";
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.tick {
+  grid-area: tick;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 2px solid var(--outline);
+  border-radius: 50%;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+.tick:hover {
+  border-color: var(--accent);
+}
+
+.tick[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.habit-info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.habit-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.habit-info input {
+  width: 100%;
+}
+
+.habit-streak {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.habit-actions {
+  grid-area: actions;
+  display: flex;
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.icon-button-danger:hover {
+  color: var(--danger);
+}
+
+/* 7-day history. Done days are filled and missed days are outlined,
+   so the difference doesn't depend on colour alone. */
+.dots {
+  grid-area: dots;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dots li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 1.5rem;
+}
+
+.dot-day {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.dot {
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 2px solid var(--outline);
+  border-radius: 50%;
+}
+
+.dot.is-done {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.dots li.is-today .dot-day {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.empty-state {
+  margin: 2rem 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .habit {
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    grid-template-areas: "tick info dots actions";
+  }
+
+  .dots {
+    gap: 0.125rem;
+  }
+}
