@@ -33,12 +33,18 @@
 
   <template id="habit-template">
     <li class="habit">
-      <button type="button" class="tick" data-action="toggle" aria-pressed="false">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+      <div class="tick">
+        <input type="checkbox" data-action="toggle">
+        <span class="tick-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
       <div class="habit-info">
         <span class="habit-name"></span>
-        <span class="habit-streak"></span>
+        <span class="habit-streak">
+          <svg class="flame" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2c.5 3.5-1.2 5.3-2.8 7.1C7.7 10.8 6 12.7 6 15.5 6 19.1 8.7 22 12 22s6-2.9 6-6.5c0-2.5-1.1-4.4-2.3-5.9-.3 1.4-1 2.3-2 2.8.4-3.6-.1-7.6-1.7-10.4z" fill="currentColor"/></svg>
+          <span class="streak-text"></span>
+        </span>
       </div>
       <ul class="dots"></ul>
       <div class="habit-actions">

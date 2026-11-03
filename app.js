@@ -216,8 +216,10 @@ function buildRow(habit, today) {
   const row = rowTemplate.content.firstElementChild.cloneNode(true);
   row.dataset.id = habit.id;
   applyName(row, habit.name);
-  row.querySelector('.tick').setAttribute('aria-pressed', String(habit.completions.includes(today)));
-  row.querySelector('.habit-streak').textContent = streakText(currentStreak(habit.completions, today));
+  row.querySelector('[data-action="toggle"]').checked = habit.completions.includes(today);
+  const streak = currentStreak(habit.completions, today);
+  row.querySelector('.streak-text').textContent = streakText(streak);
+  row.querySelector('.flame').toggleAttribute('hidden', streak === 0);
   row.querySelector('.dots').append(...buildDots(habit, today));
   return row;
 }
