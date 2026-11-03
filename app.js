@@ -208,7 +208,7 @@ function buildDots(habit, today) {
 function applyName(row, name) {
   row.querySelector('.habit-name').textContent = name;
   row.querySelector('[data-action="toggle"]').setAttribute('aria-label', `Done today: ${name}`);
-  row.querySelector('[data-action="rename"]').setAttribute('aria-label', `Rename ${name}`);
+  row.querySelector('.icon-button[data-action="rename"]').setAttribute('aria-label', `Rename ${name}`);
   row.querySelector('[data-action="delete"]').setAttribute('aria-label', `Delete ${name}`);
 }
 
@@ -262,7 +262,9 @@ function startRename(id, row) {
   input.maxLength = 80;
   input.value = habit.name;
   input.setAttribute('aria-label', `New name for ${habit.name}`);
-  row.querySelector('.habit-name').replaceWith(input);
+  const nameEl = row.querySelector('.habit-name');
+  nameEl.hidden = true;
+  nameEl.after(input);
   editing = { id, input };
   input.focus();
   input.select();
@@ -282,9 +284,8 @@ function finishRename(shouldSave) {
   }
 
   const row = input.closest('.habit');
-  const nameEl = document.createElement('span');
-  nameEl.className = 'habit-name';
-  input.replaceWith(nameEl);
+  input.remove();
+  row.querySelector('.habit-name').hidden = false;
   applyName(row, habit ? habit.name : name);
 }
 
@@ -340,7 +341,7 @@ listEl.addEventListener('keydown', (event) => {
   event.preventDefault();
   const row = editing.input.closest('.habit');
   finishRename(event.key === 'Enter');
-  row.querySelector('[data-action="rename"]').focus();
+  row.querySelector('.icon-button[data-action="rename"]').focus();
 });
 
 listEl.addEventListener('focusout', (event) => {

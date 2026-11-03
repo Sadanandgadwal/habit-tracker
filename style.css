@@ -214,9 +214,17 @@ input[type="text"] {
   min-width: 0;
 }
 
+/* Clicking the name renames. Keyboard users have the pencil button, which
+   does the same thing. align-self keeps the target to the text itself. */
 .habit-name {
+  align-self: flex-start;
   font-weight: 600;
   overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.habit-name:hover {
+  text-decoration: underline;
 }
 
 .habit-info input {
