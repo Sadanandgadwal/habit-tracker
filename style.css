@@ -10,6 +10,7 @@
   --accent: #1f7a55;
   --on-accent: #ffffff;
   --danger: #b3321f;
+  --flame: #c2510c;
   --hover: #efeee8;
   --warning-bg: #fdf0d5;
   --warning-text: #5c3f00;
@@ -26,6 +27,7 @@
     --accent: #5fcf9f;
     --on-accent: #0d1f17;
     --danger: #ff8a75;
+    --flame: #ff9d4d;
     --hover: #2a2b27;
     --warning-bg: #3a2e12;
     --warning-text: #f5dc9f;
@@ -222,8 +224,16 @@ input[type="text"] {
 }
 
 .habit-streak {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+.flame {
+  flex: none;
+  color: var(--flame);
 }
 
 .habit-actions {

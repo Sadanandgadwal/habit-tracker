@@ -217,7 +217,9 @@ function buildRow(habit, today) {
   row.dataset.id = habit.id;
   applyName(row, habit.name);
   row.querySelector('[data-action="toggle"]').checked = habit.completions.includes(today);
-  row.querySelector('.habit-streak').textContent = streakText(currentStreak(habit.completions, today));
+  const streak = currentStreak(habit.completions, today);
+  row.querySelector('.streak-text').textContent = streakText(streak);
+  row.querySelector('.flame').toggleAttribute('hidden', streak === 0);
   row.querySelector('.dots').append(...buildDots(habit, today));
   return row;
 }
