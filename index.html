@@ -28,7 +28,11 @@
     <p id="form-error" class="form-error" role="status"></p>
 
     <ul id="habit-list" class="habit-list"></ul>
-    <p id="empty-state" class="empty-state" hidden>No habits yet. Add your first one above.</p>
+    <div id="empty-state" class="empty-state" hidden>
+      <svg class="empty-icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path d="M12 21v-9M12 12c0-3.5-2.5-6-7-6 0 4 2.5 6.5 7 6zM12 15.5c0-3 2-5.5 7-5.5 0 3.5-2.5 5.5-7 5.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2>No habits yet</h2>
+      <p>Start with something small, like a short walk. Add it above to begin.</p>
+    </div>
   </main>
 
   <template id="habit-template">
@@ -40,7 +44,7 @@
         </span>
       </div>
       <div class="habit-info">
-        <span class="habit-name"></span>
+        <span class="habit-name" data-action="rename" title="Click to rename"></span>
         <span class="habit-streak">
           <svg class="flame" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2c.5 3.5-1.2 5.3-2.8 7.1C7.7 10.8 6 12.7 6 15.5 6 19.1 8.7 22 12 22s6-2.9 6-6.5c0-2.5-1.1-4.4-2.3-5.9-.3 1.4-1 2.3-2 2.8.4-3.6-.1-7.6-1.7-10.4z" fill="currentColor"/></svg>
           <span class="streak-text"></span>
